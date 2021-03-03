@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-// For debug purposes only!!
+// For debug purposes only!! TODO
 class CreateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
