@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:insta_code/screens/create_screen.dart';
 import 'package:insta_code/screens/home_screen.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
@@ -35,10 +36,11 @@ class _NavBarState extends State<NavBar> {
         'Likes',
         style: optionStyle,
       ),
-      Text(
-        'Create',
-        style: optionStyle,
-      ),
+      // Text(
+      //   'Create',
+      //   style: optionStyle,
+      // ),
+      CreateScreen(),
       Text(
         'Profile',
         style: optionStyle,
