@@ -7,6 +7,14 @@ class Post {
   final String highlightLanguage;
   final Map<String, TextStyle> theme;
   final String uuid;
+  final DateTime timestamp;
 
-  Post({this.highlightLanguage, this.code, this.user, this.theme, this.uuid});
+  Post({
+    this.timestamp,
+    this.highlightLanguage,
+    this.code,
+    this.user,
+    this.theme,
+    this.uuid,
+  });
 }
