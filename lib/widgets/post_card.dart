@@ -37,8 +37,7 @@ class PostCard extends StatelessWidget {
                           CircleAvatar(
                             backgroundColor: Colors.black,
                             radius: 22,
-                            backgroundImage: NetworkImage(
-                                "https://sooxt98.space/content/images/size/w100/2019/01/profile.png"),
+                            backgroundImage: NetworkImage(post.user.photoUrl),
                           ),
                           SizedBox(
                             width: 8,
