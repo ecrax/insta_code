@@ -35,20 +35,22 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: listDocument.length != 0
+      child: listDocument.isNotEmpty
           ? RefreshIndicator(
+              onRefresh: getDocuments,
               child: ListView.builder(
                 controller: widget.controller,
                 itemCount: listDocument.length,
                 itemBuilder: (context, index) {
-                  var data = listDocument[index].content;
+                  final Map<dynamic, dynamic> data =
+                      listDocument[index].content;
                   return Padding(
                     padding:
                         const EdgeInsets.only(top: 24, right: 12, left: 12),
                     child: PostCard(
                       post: Post(
-                        code: data["code"].replaceAll("\\n", "\n"),
-                        highlightLanguage: data["highlightLanguage"],
+                        code: data["code"].replaceAll("\\n", "\n") as String,
+                        highlightLanguage: data["highlightLanguage"] as String,
                         theme: themeMap[data["theme"]],
                         user: User(
                           name: "test",
@@ -60,9 +62,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
               ),
-              onRefresh: getDocuments,
             )
-          : CircularProgressIndicator(),
+          : const CircularProgressIndicator(),
     );
   }
 
@@ -70,8 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
   QuerySnapshot collectionState;
   // Fetch first 15 documents
   Future<void> getDocuments() async {
-    listDocument = List();
-    var collection = FirebaseFirestore.instance
+    listDocument = [];
+    final collection = FirebaseFirestore.instance
         .collection('posts')
         .orderBy("timestamp", descending: true)
         .limit(15);
@@ -81,10 +82,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> getDocumentsNext() async {
     // Get the last visible document
-    var lastVisible = collectionState.docs[collectionState.docs.length - 1];
+    final lastVisible = collectionState.docs[collectionState.docs.length - 1];
     //print('listDocument legnth: ${collectionState.size} last: $lastVisible');
 
-    var collection = FirebaseFirestore.instance
+    final collection = FirebaseFirestore.instance
         .collection('posts')
         .orderBy("timestamp", descending: true)
         .startAfterDocument(lastVisible)
@@ -93,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
     fetchDocuments(collection);
   }
 
-  fetchDocuments(Query collection) {
+  void fetchDocuments(Query collection) {
     collection.get().then((value) {
       collectionState =
           value; // store collection state to set where to start next

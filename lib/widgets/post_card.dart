@@ -17,11 +17,8 @@ class PostCard extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              color: Colors.black,
-              width: 1,
-            ),
-            color: Color(0xFFFAFAFA),
+            border: Border.all(),
+            color: const Color(0xFFFAFAFA),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
@@ -39,7 +36,7 @@ class PostCard extends StatelessWidget {
                             radius: 22,
                             backgroundImage: NetworkImage(post.user.photoUrl),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
                           Column(
@@ -66,7 +63,7 @@ class PostCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Divider(
+                const Divider(
                   thickness: 1,
                   color: Colors.black, // Color(0xFF878787)
                   height: 0,
@@ -77,7 +74,7 @@ class PostCard extends StatelessWidget {
                     post.code,
                     language: post.highlightLanguage,
                     theme: post.theme,
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     textStyle: GoogleFonts.firaCode(fontSize: 20),
                   ),
                 ),

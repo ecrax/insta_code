@@ -1,11 +1,11 @@
 class DocObj {
-  var content;
+  Map<dynamic, dynamic> content;
 
   DocObj(DocObj doc) {
-    this.content = doc.getDocName();
+    content = doc.getDocName();
   }
 
-  dynamic getDocName() => content;
+  Map<dynamic, dynamic> getDocName() => content;
 
   DocObj.setDocDetails(Map<dynamic, dynamic> doc) : content = doc;
 }

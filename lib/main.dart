@@ -4,14 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_code/widgets/nav_bar.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  String host = defaultTargetPlatform == TargetPlatform.android
-      ? '10.0.2.2:8080'
-      : 'localhost:8080';
-
-  FirebaseFirestore.instance.settings = Settings(host: host, sslEnabled: false);
+  initFirebase();
   runApp(MyApp());
 }
 
@@ -24,16 +20,15 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.black,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: NavBar(),
+      home: const NavBar(),
     );
   }
+}
 
-  void initFirebase() {
-    String host = defaultTargetPlatform == TargetPlatform.android
-        ? '10.0.2.2:8080'
-        : 'localhost:8080';
+void initFirebase() {
+  final String host = defaultTargetPlatform == TargetPlatform.android
+      ? '10.0.2.2:8080'
+      : 'localhost:8080';
 
-    FirebaseFirestore.instance.settings =
-        Settings(host: host, sslEnabled: false);
-  }
+  FirebaseFirestore.instance.settings = Settings(host: host, sslEnabled: false);
 }

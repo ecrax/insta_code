@@ -32,7 +32,7 @@ class _NavBarState extends State<NavBar> {
       HomeScreen(
         controller: controller,
       ),
-      Text(
+      const Text(
         'Likes',
         style: optionStyle,
       ),
@@ -41,7 +41,7 @@ class _NavBarState extends State<NavBar> {
       //   style: optionStyle,
       // ),
       CreateScreen(),
-      Text(
+      const Text(
         'Profile',
         style: optionStyle,
       ),
@@ -75,7 +75,7 @@ class _NavBarState extends State<NavBar> {
         elevation: 0,
         title: Text(
           appBarText,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 22,
             //fontWeight: FontWeight.w700,
@@ -96,20 +96,18 @@ class _NavBarState extends State<NavBar> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: GNav(
-                tabActiveBorder: Border.all(
-                  color: Colors.black,
-                  width: 1.0,
-                ),
+                tabActiveBorder: Border.all(),
                 gap: 10,
                 color: Colors.grey[600],
                 activeColor: Colors.black,
                 rippleColor: Colors.grey[300],
                 hoverColor: Colors.grey[100],
                 iconSize: 20,
-                textStyle: TextStyle(fontSize: 16, color: Colors.black),
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14.5),
-                duration: Duration(milliseconds: 400),
-                tabs: [
+                textStyle: const TextStyle(fontSize: 16, color: Colors.black),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 14.5),
+                duration: const Duration(milliseconds: 400),
+                tabs: const [
                   GButton(
                     icon: LineIcons.home,
                     text: 'Home',
@@ -135,7 +133,7 @@ class _NavBarState extends State<NavBar> {
                   ),
                 ],
                 selectedIndex: _selectedIndex,
-                onTabChange: (index) {
+                onTabChange: (int index) {
                   setState(() {
                     _selectedIndex = index;
                   });
