@@ -7,7 +7,7 @@ import 'package:insta_code/utils/user.dart';
 import 'package:insta_code/widgets/post_card.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key key, this.controller}) : super(key: key);
+  const HomeScreen({Key key, @required this.controller}) : super(key: key);
 
   final ScrollController controller;
 
