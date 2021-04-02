@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:insta_code/utils/post.dart';
+import 'package:insta_code/models/post.dart';
 
 import 'package:insta_code/utils/extensions.dart';
 

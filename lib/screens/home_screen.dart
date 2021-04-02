@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_highlight/theme_map.dart';
-import 'package:insta_code/utils/doc_obj.dart';
-import 'package:insta_code/utils/post.dart';
-import 'package:insta_code/utils/user.dart';
+import 'package:insta_code/models/doc_obj.dart';
+import 'package:insta_code/models/post.dart';
+import 'package:insta_code/models/user.dart';
+import 'package:insta_code/services/provider.dart';
 import 'package:insta_code/widgets/post_card.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key, @required this.controller}) : super(key: key);
@@ -34,6 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final _auth = context.read(authProvider);
+    print(_auth.currentUser.email);
+
     return Container(
       child: listDocument.isNotEmpty
           ? RefreshIndicator(
@@ -53,9 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         highlightLanguage: data["highlightLanguage"] as String,
                         theme: themeMap[data["theme"]],
                         user: User(
-                          name: "test",
-                          photoUrl:
-                              "https://sooxt98.space/content/images/size/w100/2019/01/profile.png",
+                          name: _auth.currentUser.displayName,
+                          photoUrl: _auth.currentUser.photoURL,
                         ),
                       ),
                     ),
@@ -63,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             )
-          : const CircularProgressIndicator(),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 

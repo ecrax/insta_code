@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:insta_code/screens/create_screen.dart';
 import 'package:insta_code/screens/home_screen.dart';
+import 'package:insta_code/services/provider.dart';
 import 'package:insta_code/utils/tab_items.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Navigation extends StatefulWidget {
   @override
@@ -30,7 +32,10 @@ class _NavigationState extends State<Navigation> {
 
   @override
   Widget build(BuildContext context) {
+    final _auth = context.read(authProvider);
+
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: ScrollAppBar(
         controller: controller,
         backgroundColor: Colors.white,
@@ -69,17 +74,17 @@ class _NavigationState extends State<Navigation> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 20, vertical: 14.5),
               duration: const Duration(milliseconds: 400),
-              tabs: const [
-                GButton(
+              tabs: [
+                const GButton(
                   icon: LineIcons.home,
                   text: 'Home',
                 ),
-                GButton(
+                const GButton(
                   icon: LineIcons.heart,
                   text:
                       'Likes', //https://github.com/sooxt98/google_nav_bar/blob/master/example/lib/main_gallery.dart#L151
                 ),
-                GButton(
+                const GButton(
                   icon: LineIcons.plus,
                   text: 'Create',
                 ),
@@ -89,8 +94,7 @@ class _NavigationState extends State<Navigation> {
                   leading: CircleAvatar(
                     backgroundColor: Colors.black,
                     radius: 12,
-                    backgroundImage: NetworkImage(
-                        "https://sooxt98.space/content/images/size/w100/2019/01/profile.png"),
+                    backgroundImage: NetworkImage(_auth.currentUser.photoURL),
                   ),
                 ),
               ],

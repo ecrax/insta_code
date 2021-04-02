@@ -2,13 +2,18 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:insta_code/services/auth.dart';
+import 'package:insta_code/services/provider.dart';
 
 // For debug purposes only!! TODO
-class CreateScreen extends StatelessWidget {
+class CreateScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final CollectionReference posts =
-        FirebaseFirestore.instance.collection('posts');
+    final _firestore = useProvider(firestoreProvider);
+
+    final CollectionReference posts = _firestore.collection('posts');
 
     Future<void> addUser() {
       // Call the user's CollectionReference to add a new user
@@ -25,11 +30,23 @@ class CreateScreen extends StatelessWidget {
           .catchError((error) => print("Failed to add post: $error"));
     }
 
-    return ElevatedButton(
-      onPressed: () async {
-        await addUser();
-      },
-      child: const Text("Add data to DB"),
+    return Column(
+      children: [
+        ElevatedButton(
+          onPressed: () async {
+            await addUser();
+          },
+          child: const Text("Add data to DB"),
+        ),
+
+        // TODO: Move to profile page
+        ElevatedButton(
+          onPressed: () async {
+            await Auth().signOut();
+          },
+          child: const Text("Logout"),
+        ),
+      ],
     );
   }
 }

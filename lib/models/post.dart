@@ -1,5 +1,5 @@
 import 'package:flutter/rendering.dart';
-import 'package:insta_code/utils/user.dart';
+import 'package:insta_code/models/user.dart';
 
 class Post {
   final String code;
